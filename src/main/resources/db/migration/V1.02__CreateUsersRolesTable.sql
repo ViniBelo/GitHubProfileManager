@@ -1,0 +1,5 @@
+CREATE TABLE users_roles (
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT REFERENCES users NOT NULL,
+    role_id BIGINT REFERENCES roles NOT NULL
+);
