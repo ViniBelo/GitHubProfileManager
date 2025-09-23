@@ -7,4 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.math.BigInteger;
 
 @Repository
-public interface RoleRepository extends JpaRepository<Role, BigInteger> { }
+public interface RoleRepository extends JpaRepository<Role, BigInteger> {
+    boolean existsRolesByName(String name);
+
+    Role findByName(String name);
+}

@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.math.BigInteger;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, BigInteger> { }
+public interface UserRepository extends JpaRepository<User, BigInteger> {
+    boolean existsUserByLogin(String login);
+}

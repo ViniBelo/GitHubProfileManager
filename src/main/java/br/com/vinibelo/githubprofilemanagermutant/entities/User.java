@@ -2,10 +2,12 @@ package br.com.vinibelo.githubprofilemanagermutant.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.math.BigInteger;
 import java.util.List;
 
+@NoArgsConstructor
 @Getter
 @Entity(name = "users")
 public class User {
@@ -19,4 +21,12 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
+
+    public User(String login,
+                String url,
+                List<Role> roles) {
+        this.login = login;
+        this.url = url;
+        this.roles = roles;
+    }
 }
