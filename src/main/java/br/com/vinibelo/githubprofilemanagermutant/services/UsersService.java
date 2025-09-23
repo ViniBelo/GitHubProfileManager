@@ -1,6 +1,7 @@
 package br.com.vinibelo.githubprofilemanagermutant.services;
 
 import br.com.vinibelo.githubprofilemanagermutant.controllers.dto.users.ListUsersDto;
+import br.com.vinibelo.githubprofilemanagermutant.controllers.dto.users.RoleDto;
 import br.com.vinibelo.githubprofilemanagermutant.controllers.dto.users.UsersToListDto;
 import br.com.vinibelo.githubprofilemanagermutant.entities.User;
 import br.com.vinibelo.githubprofilemanagermutant.repositories.UserRepository;
@@ -25,7 +26,8 @@ public class UsersService {
                         new UsersToListDto(
                                 user.getId(),
                                 user.getLogin(),
-                                user.getUrl()
+                                user.getUrl(),
+                                user.getRoles().stream().map((role -> new RoleDto(role.getName()))).toList()
                         )
                 )
         );
