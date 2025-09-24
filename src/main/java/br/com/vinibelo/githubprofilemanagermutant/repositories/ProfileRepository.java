@@ -1,10 +1,8 @@
 package br.com.vinibelo.githubprofilemanagermutant.repositories;
 
-import br.com.vinibelo.githubprofilemanagermutant.entities.User;
+import br.com.vinibelo.githubprofilemanagermutant.entities.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    boolean existsUserByLogin(String login);
-}
+public interface ProfileRepository extends JpaRepository<Profile, Long> { }
