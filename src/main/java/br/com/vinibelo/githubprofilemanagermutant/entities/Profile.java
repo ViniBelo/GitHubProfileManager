@@ -3,14 +3,12 @@ package br.com.vinibelo.githubprofilemanagermutant.entities;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 
-import java.math.BigInteger;
-
 @NoArgsConstructor
-@Entity
+@Entity(name = "profiles")
 public class Profile {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private BigInteger id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String url;
 
