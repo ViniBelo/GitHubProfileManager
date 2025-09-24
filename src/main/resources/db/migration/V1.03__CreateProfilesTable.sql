@@ -1,0 +1,6 @@
+CREATE TABLE profiles (
+    id BIGSERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    url TEXT NOT NULL,
+    user_id BIGINT REFERENCES users NOT NULL
+)
