@@ -4,6 +4,7 @@ import br.com.vinibelo.githubprofilemanagermutant.entities.Profile;
 import br.com.vinibelo.githubprofilemanagermutant.entities.User;
 import br.com.vinibelo.githubprofilemanagermutant.repositories.ProfileRepository;
 import br.com.vinibelo.githubprofilemanagermutant.repositories.UserRepository;
+import br.com.vinibelo.githubprofilemanagermutant.services.exceptions.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -24,6 +25,17 @@ public class ProfilesService {
             Optional<User> user = userRepository.findById(userId.get());
             user.ifPresent(profile::setOwner);
         }
+        profileRepository.save(profile);
+    }
+
+    public void assignProfileOwner(Long id, Long userId) throws NotFoundException {
+        Profile profile = profileRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Profile not found with id: " + id));
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new NotFoundException("User not found with id: " + userId));
+
+        profile.setOwner(user);
         profileRepository.save(profile);
     }
 }
