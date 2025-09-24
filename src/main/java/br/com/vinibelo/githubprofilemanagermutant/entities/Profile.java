@@ -1,6 +1,7 @@
 package br.com.vinibelo.githubprofilemanagermutant.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -10,10 +11,12 @@ public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Getter
     private String name;
+    @Getter
     private String url;
     @Setter
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User owner;
 

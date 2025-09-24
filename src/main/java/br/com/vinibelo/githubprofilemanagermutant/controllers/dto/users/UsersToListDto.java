@@ -6,5 +6,6 @@ public record UsersToListDto(
         Long id,
         String login,
         String url,
-        List<RoleDto> roles
+        List<RoleDto> roles,
+        List<ProfileDto> profiles
 ) { }

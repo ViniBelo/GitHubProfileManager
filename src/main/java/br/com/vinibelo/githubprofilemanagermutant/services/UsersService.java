@@ -1,6 +1,7 @@
 package br.com.vinibelo.githubprofilemanagermutant.services;
 
 import br.com.vinibelo.githubprofilemanagermutant.controllers.dto.users.ListUsersDto;
+import br.com.vinibelo.githubprofilemanagermutant.controllers.dto.users.ProfileDto;
 import br.com.vinibelo.githubprofilemanagermutant.controllers.dto.users.RoleDto;
 import br.com.vinibelo.githubprofilemanagermutant.controllers.dto.users.UsersToListDto;
 import br.com.vinibelo.githubprofilemanagermutant.entities.User;
@@ -19,7 +20,7 @@ public class UsersService {
     }
 
     public ListUsersDto listUsers() {
-        ListUsersDto response = new ListUsersDto(new ArrayList<UsersToListDto>());
+        ListUsersDto response = new ListUsersDto(new ArrayList<>());
         List<User> usersList = userRepository.findAll();
         usersList.forEach((user) ->
                 response.users().add(
@@ -27,7 +28,17 @@ public class UsersService {
                                 user.getId(),
                                 user.getLogin(),
                                 user.getUrl(),
-                                user.getRoles().stream().map((role -> new RoleDto(role.getName()))).toList()
+                                user.getRoles()
+                                        .stream()
+                                        .map((role ->
+                                                new RoleDto(role.getName())))
+                                        .toList(),
+                                user.getProfiles()
+                                        .stream()
+                                        .map(profile ->
+                                                new ProfileDto(profile.getName(),
+                                                        profile.getUrl()))
+                                        .toList()
                         )
                 )
         );
