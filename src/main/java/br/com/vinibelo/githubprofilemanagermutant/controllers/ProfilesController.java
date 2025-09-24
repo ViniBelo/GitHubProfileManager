@@ -20,11 +20,15 @@ public class ProfilesController {
 
     @PostMapping
     public ResponseEntity<Void> createProfiles(@RequestBody CreateProfileDto createProfileDto) {
-        profilesService.createProfile(createProfileDto.name(),
-                createProfileDto.url(),
-                createProfileDto.userId());
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .build();
+        try {
+            profilesService.createProfile(createProfileDto.name(),
+                    createProfileDto.url(),
+                    createProfileDto.userId());
+            return ResponseEntity
+                    .status(HttpStatus.CREATED)
+                    .build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
     }
 }
